@@ -61,8 +61,6 @@ pes$V4011[is.na(pes$V4011)] <- 99
 
 ##### CALCULO DO P-VALOR
 
-##inserir coeficiente e std.error
-
 pvalor <- function(x) {
 if(x < 0) {
 valorp <- pt(x, df = dfs, lower.tail = T)*2
@@ -78,13 +76,13 @@ estados <- c("Rondônia", "Acre", "Amazonas", "Roraima", "Pará", "Amapá", "Toc
 
 
 ### vetores
-coeficientesexplicado <- c(1)
-errospadraoexplicado <- c(1)
-coeficientesinexplicado <- c(1)
-errospadraoinexplicado <- c(1)
+coeficientes_explicado <- c(1)
+erros_padrao_explicado <- c(1)
+coeficientes_inexplicado <- c(1)
+erros_padrao_inexplicado <- c(1)
 tcs <- c(1)
-pvaluesexplicado <- c(1)
-pvaluesinexplicado <- c(1)
+pvalues_explicado <- c(1)
+pvalues_inexplicado <- c(1)
 
 
 ########## RONDONIA
@@ -206,24 +204,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -348,24 +346,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -490,24 +488,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -632,24 +630,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -774,24 +772,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -916,24 +914,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -1058,24 +1056,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -1200,24 +1198,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -1342,24 +1340,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -1484,24 +1482,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -1626,24 +1624,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -1768,24 +1766,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -1910,24 +1908,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -2052,24 +2050,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -2194,24 +2192,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -2336,24 +2334,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -2478,24 +2476,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -2620,24 +2618,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -2762,24 +2760,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -2904,24 +2902,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -3046,24 +3044,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -3188,24 +3186,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -3330,24 +3328,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -3472,24 +3470,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -3614,24 +3612,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -3756,24 +3754,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -3898,42 +3896,43 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
 tcs <- append(tcs, tc)
 
-coeficientesexplicado <- coeficientesexplicado[-1]
-errospadraoexplicado <- errospadraoexplicado[-1]
-coeficientesinexplicado <- coeficientesinexplicado[-1]
-errospadraoinexplicado <- errospadraoinexplicado[-1]
+coeficientes_explicado <- coeficientes_explicado[-1]
+erros_padrao_explicado <- erros_padrao_explicado[-1]
+coeficientes_inexplicado <- coeficientes_inexplicado[-1]
+erros_padrao_inexplicado <- erros_padrao_inexplicado[-1]
 tcs <- tcs[-1]
-pvaluesexplicado <- pvaluesexplicado[-1]
-pvaluesinexplicado <- pvaluesinexplicado[-1]
+pvalues_explicado <- pvalues_explicado[-1]
+pvalues_inexplicado <- pvalues_inexplicado[-1]
 
-matriz <- cbind(estados, coeficientesexplicado, errospadraoexplicado, coeficientesinexplicado, errospadraoinexplicado, pvaluesexplicado, pvaluesinexplicado, tcs)
+matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs)
 
 matriz <- data.frame(matriz)
 
 nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc")
+
 
 write.xlsx(matriz, "c:/temp/federal.xlsx")
 
@@ -3944,13 +3943,13 @@ write.xlsx(matriz, "c:/temp/federal.xlsx")
 
 
 ### vetores
-coeficientesexplicado <- c(1)
-errospadraoexplicado <- c(1)
-coeficientesinexplicado <- c(1)
-errospadraoinexplicado <- c(1)
+coeficientes_explicado <- c(1)
+erros_padrao_explicado <- c(1)
+coeficientes_inexplicado <- c(1)
+erros_padrao_inexplicado <- c(1)
 tcs <- c(1)
-pvaluesexplicado <- c(1)
-pvaluesinexplicado <- c(1)
+pvalues_explicado <- c(1)
+pvalues_inexplicado <- c(1)
 
 
 ########## RONDONIA
@@ -4072,24 +4071,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -4214,24 +4213,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -4356,24 +4355,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -4498,24 +4497,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -4640,24 +4639,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -4782,24 +4781,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -4924,24 +4923,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -5066,24 +5065,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -5208,24 +5207,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -5350,24 +5349,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -5492,24 +5491,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -5634,24 +5633,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -5776,24 +5775,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -5918,24 +5917,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -6060,24 +6059,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -6202,24 +6201,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -6344,24 +6343,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -6486,24 +6485,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -6628,24 +6627,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -6770,24 +6769,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -6912,24 +6911,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -7054,24 +7053,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -7196,24 +7195,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -7338,24 +7337,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -7480,24 +7479,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -7622,24 +7621,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -7764,38 +7763,38 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
 tcs <- append(tcs, tc)
 
-coeficientesexplicado <- coeficientesexplicado[-1]
-errospadraoexplicado <- errospadraoexplicado[-1]
-coeficientesinexplicado <- coeficientesinexplicado[-1]
-errospadraoinexplicado <- errospadraoinexplicado[-1]
+coeficientes_explicado <- coeficientes_explicado[-1]
+erros_padrao_explicado <- erros_padrao_explicado[-1]
+coeficientes_inexplicado <- coeficientes_inexplicado[-1]
+erros_padrao_inexplicado <- erros_padrao_inexplicado[-1]
 tcs <- tcs[-1]
-pvaluesexplicado <- pvaluesexplicado[-1]
-pvaluesinexplicado <- pvaluesinexplicado[-1]
+pvalues_explicado <- pvalues_explicado[-1]
+pvalues_inexplicado <- pvalues_inexplicado[-1]
 
-matriz <- cbind(estados, coeficientesexplicado, errospadraoexplicado, coeficientesinexplicado, errospadraoinexplicado, pvaluesexplicado, pvaluesinexplicado, tcs)
+matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs)
 
 matriz <- data.frame(matriz)
 
@@ -7803,19 +7802,21 @@ nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)"
 
 write.xlsx(matriz, "c:/temp/estadual.xlsx")
 
+
+
 #### FIM DA PARTE ESTADUAL
 
 #### MUNICIPAL
 
 
 ### vetores
-coeficientesexplicado <- c(1)
-errospadraoexplicado <- c(1)
-coeficientesinexplicado <- c(1)
-errospadraoinexplicado <- c(1)
+coeficientes_explicado <- c(1)
+erros_padrao_explicado <- c(1)
+coeficientes_inexplicado <- c(1)
+erros_padrao_inexplicado <- c(1)
 tcs <- c(1)
-pvaluesexplicado <- c(1)
-pvaluesinexplicado <- c(1)
+pvalues_explicado <- c(1)
+pvalues_inexplicado <- c(1)
 
 
 ########## RONDONIA
@@ -7937,24 +7938,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -8079,24 +8080,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -8221,24 +8222,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -8363,24 +8364,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -8505,24 +8506,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -8647,24 +8648,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -8789,24 +8790,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -8931,24 +8932,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -9073,24 +9074,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -9215,24 +9216,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -9357,24 +9358,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -9499,24 +9500,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -9641,24 +9642,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -9783,24 +9784,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -9925,24 +9926,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -10067,24 +10068,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -10209,24 +10210,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -10351,24 +10352,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -10493,24 +10494,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -10635,24 +10636,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -10777,24 +10778,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -10919,24 +10920,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -11061,24 +11062,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -11203,24 +11204,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -11345,24 +11346,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -11487,24 +11488,24 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
@@ -11629,38 +11630,38 @@ oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
 dfs <- sum(publico) + sum(privado) - 13
 
-coefexplicado <- (oaxaca$twofold$overall)[[1,2]]
-stderrorexplicado <- (oaxaca$twofold$overall)[[1,3]]
-coefinexplicado <- (oaxaca$twofold$overall)[[1,4]]
-stderrorinexplicado <- (oaxaca$twofold$overall)[[1,5]]
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
 
-coeficientesexplicado <- append(coeficientesexplicado, coefexplicado)
-errospadraoexplicado <- append(errospadraoexplicado, stderrorexplicado)
-coeficientesinexplicado <- append(coeficientesinexplicado, coefinexplicado)
-errospadraoinexplicado <- append(errospadraoinexplicado, stderrorinexplicado)
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
 
-texplicado <- coefexplicado/stderrorexplicado
-tinexplicado <- coefinexplicado/stderrorinexplicado
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
 
-pvalueexplicado <- pvalor(texplicado)
-pvalueinexplicado <- pvalor(tinexplicado)
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
 
-pvaluesexplicado <- append(pvaluesexplicado, pvalueexplicado)
-pvaluesinexplicado <- append(pvaluesinexplicado, pvalueinexplicado)
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
 
 tc <- qt(0.975, df = dfs)
 
 tcs <- append(tcs, tc)
 
-coeficientesexplicado <- coeficientesexplicado[-1]
-errospadraoexplicado <- errospadraoexplicado[-1]
-coeficientesinexplicado <- coeficientesinexplicado[-1]
-errospadraoinexplicado <- errospadraoinexplicado[-1]
+coeficientes_explicado <- coeficientes_explicado[-1]
+erros_padrao_explicado <- erros_padrao_explicado[-1]
+coeficientes_inexplicado <- coeficientes_inexplicado[-1]
+erros_padrao_inexplicado <- erros_padrao_inexplicado[-1]
 tcs <- tcs[-1]
-pvaluesexplicado <- pvaluesexplicado[-1]
-pvaluesinexplicado <- pvaluesinexplicado[-1]
+pvalues_explicado <- pvalues_explicado[-1]
+pvalues_inexplicado <- pvalues_inexplicado[-1]
 
-matriz <- cbind(estados, coeficientesexplicado, errospadraoexplicado, coeficientesinexplicado, errospadraoinexplicado, pvaluesexplicado, pvaluesinexplicado, tcs)
+matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs)
 
 matriz <- data.frame(matriz)
 
