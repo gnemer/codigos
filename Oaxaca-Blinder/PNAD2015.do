@@ -3933,6 +3933,7 @@ matriz <- data.frame(matriz)
 
 nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc")
 
+names(matriz) <- nomes
 
 write.xlsx(matriz, "c:/temp/federal.xlsx")
 
@@ -7800,9 +7801,9 @@ matriz <- data.frame(matriz)
 
 nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc")
 
+names(matriz) <- nomes
+
 write.xlsx(matriz, "c:/temp/estadual.xlsx")
-
-
 
 #### FIM DA PARTE ESTADUAL
 
@@ -11666,5 +11667,7 @@ matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coefici
 matriz <- data.frame(matriz)
 
 nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc")
+
+names(matriz) <- nomes
 
 write.xlsx(matriz, "c:/temp/municipal.xlsx")
