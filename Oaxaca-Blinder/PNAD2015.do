@@ -222,7 +222,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -364,7 +364,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -506,7 +506,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -648,7 +648,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -790,7 +790,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -932,7 +932,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -1074,7 +1074,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -1216,7 +1216,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -1358,7 +1358,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -1500,7 +1500,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -1642,7 +1642,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -1784,7 +1784,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -1926,7 +1926,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -2068,7 +2068,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -2210,7 +2210,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -2352,7 +2352,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -2494,7 +2494,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -2636,7 +2636,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -2778,7 +2778,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -2920,7 +2920,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -3062,7 +3062,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -3204,7 +3204,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -3346,7 +3346,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -3488,7 +3488,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -3630,7 +3630,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -3772,7 +3772,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -3914,7 +3914,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -4092,7 +4092,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -4234,7 +4234,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -4376,7 +4376,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -4518,7 +4518,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -4660,7 +4660,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -4802,7 +4802,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -4944,7 +4944,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -5086,7 +5086,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -5228,7 +5228,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -5370,7 +5370,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -5512,7 +5512,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -5654,7 +5654,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -5796,7 +5796,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -5938,7 +5938,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -6080,7 +6080,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -6222,7 +6222,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -6364,7 +6364,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -6506,7 +6506,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -6648,7 +6648,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -6790,7 +6790,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -6932,7 +6932,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -7074,7 +7074,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -7216,7 +7216,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -7358,7 +7358,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -7500,7 +7500,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -7642,7 +7642,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -7784,7 +7784,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -7962,7 +7962,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -8104,7 +8104,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -8246,7 +8246,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -8388,7 +8388,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -8530,7 +8530,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -8672,7 +8672,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -8814,7 +8814,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -8956,7 +8956,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -9098,7 +9098,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -9240,7 +9240,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -9382,7 +9382,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -9524,7 +9524,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -9666,7 +9666,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -9808,7 +9808,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -9950,7 +9950,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -10092,7 +10092,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -10234,7 +10234,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -10376,7 +10376,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -10518,7 +10518,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -10660,7 +10660,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -10802,7 +10802,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -10944,7 +10944,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -11086,7 +11086,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -11228,7 +11228,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -11370,7 +11370,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -11512,7 +11512,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -11654,7 +11654,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -11830,7 +11830,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -11972,7 +11972,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -12114,7 +12114,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -12256,7 +12256,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -12398,7 +12398,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -12540,7 +12540,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -12682,7 +12682,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -12824,7 +12824,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -12966,7 +12966,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -13108,7 +13108,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -13250,7 +13250,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -13392,7 +13392,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -13534,7 +13534,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -13676,7 +13676,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -13818,7 +13818,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -13960,7 +13960,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -14102,7 +14102,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -14244,7 +14244,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -14386,7 +14386,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -14528,7 +14528,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -14670,7 +14670,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -14812,7 +14812,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -14954,7 +14954,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -15096,7 +15096,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -15238,7 +15238,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -15380,7 +15380,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -15522,7 +15522,7 @@ set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 13
+dfs <- sum(publico) + sum(privado) - 26
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
