@@ -3,7 +3,7 @@
 
 ####### OBJETIVO: Importar dados da PNAD 2015, declarar variáveis importantes, eliminar NA's e realizar uma decomposição de Oaxaca-Blinder em duas partes (two-fold), para cada estado e esfera governamental, e para o setor público total de cada estado ##########
 
-####### TEMPO: Cerca de 50 minutos
+####### TEMPO: Cerca de 55 minutos
 
 rm(list = ls())
 
