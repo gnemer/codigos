@@ -1,4 +1,4 @@
-################ LEIA-ME 
+# LEIA-ME 
 
 
 ####### OBJETIVO: Importar dados da PNAD 2015, declarar variáveis importantes, eliminar NA's e realizar uma decomposição de Oaxaca-Blinder em duas partes (two-fold), para cada estado e esfera governamental, e para o setor público total de cada estado ##########
