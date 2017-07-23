@@ -107,6 +107,8 @@ erros_padrao_inexplicado <- c(1)
 tcs <- c(1)
 pvalues_explicado <- c(1)
 pvalues_inexplicado <- c(1)
+medias_pub <- c(1)
+medias_priv <- c(1)
 
 for(j in 1:27){
 
@@ -251,6 +253,12 @@ tc <- qt(0.975, df = dfs)
 
 tcs <- append(tcs, tc)
 
+media_pub <- mean(rendahora[publico == 1])
+media_priv <- mean(rendahora[publico == 0])
+
+medias_pub <- append(medias_pub, media_pub)
+medias_priv <- append(medias_priv, media_priv)
+
 }
 
 coeficientes_explicado <- coeficientes_explicado[-1]
@@ -260,12 +268,14 @@ erros_padrao_inexplicado <- erros_padrao_inexplicado[-1]
 tcs <- tcs[-1]
 pvalues_explicado <- pvalues_explicado[-1]
 pvalues_inexplicado <- pvalues_inexplicado[-1]
+medias_pub <- medias_pub[-1]
+medias_priv <- medias_priv[-1]
 
-matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs)
+matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs, medias_pub, medias_priv)
 
 matriz <- data.frame(matriz)
 
-nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc")
+nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média - público", "Média - privado")
 
 names(matriz) <- nomes
 
@@ -283,6 +293,8 @@ erros_padrao_inexplicado <- c(1)
 tcs <- c(1)
 pvalues_explicado <- c(1)
 pvalues_inexplicado <- c(1)
+medias_pub <- c(1)
+medias_priv <- c(1)
 
 for(j in 1:27){
 
@@ -426,6 +438,12 @@ tc <- qt(0.975, df = dfs)
 
 tcs <- append(tcs, tc)
 
+media_pub <- mean(rendahora[publico == 1])
+media_priv <- mean(rendahora[publico == 0])
+
+medias_pub <- append(medias_pub, media_pub)
+medias_priv <- append(medias_priv, media_priv)
+
 }
 
 coeficientes_explicado <- coeficientes_explicado[-1]
@@ -435,12 +453,14 @@ erros_padrao_inexplicado <- erros_padrao_inexplicado[-1]
 tcs <- tcs[-1]
 pvalues_explicado <- pvalues_explicado[-1]
 pvalues_inexplicado <- pvalues_inexplicado[-1]
+medias_pub <- medias_pub[-1]
+medias_priv <- medias_priv[-1]
 
-matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs)
+matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs, medias_pub, medias_priv)
 
 matriz <- data.frame(matriz)
 
-nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc")
+nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média - público", "Média - privado")
 
 names(matriz) <- nomes
 
@@ -458,6 +478,8 @@ erros_padrao_inexplicado <- c(1)
 tcs <- c(1)
 pvalues_explicado <- c(1)
 pvalues_inexplicado <- c(1)
+medias_pub <- c(1)
+medias_priv <- c(1)
 
 for(j in 1:27){
 
@@ -601,6 +623,12 @@ tc <- qt(0.975, df = dfs)
 
 tcs <- append(tcs, tc)
 
+media_pub <- mean(rendahora[publico == 1])
+media_priv <- mean(rendahora[publico == 0])
+
+medias_pub <- append(medias_pub, media_pub)
+medias_priv <- append(medias_priv, media_priv)
+
 }
 
 coeficientes_explicado <- coeficientes_explicado[-1]
@@ -610,12 +638,14 @@ erros_padrao_inexplicado <- erros_padrao_inexplicado[-1]
 tcs <- tcs[-1]
 pvalues_explicado <- pvalues_explicado[-1]
 pvalues_inexplicado <- pvalues_inexplicado[-1]
+medias_pub <- medias_pub[-1]
+medias_priv <- medias_priv[-1]
 
-matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs)
+matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs, medias_pub, medias_priv)
 
 matriz <- data.frame(matriz)
 
-nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc")
+nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média - público", "Média - privado")
 
 names(matriz) <- nomes
 
@@ -633,6 +663,8 @@ erros_padrao_inexplicado <- c(1)
 tcs <- c(1)
 pvalues_explicado <- c(1)
 pvalues_inexplicado <- c(1)
+medias_pub <- c(1)
+medias_priv <- c(1)
 
 for(j in 1:27){
 
@@ -776,6 +808,12 @@ tc <- qt(0.975, df = dfs)
 
 tcs <- append(tcs, tc)
 
+media_pub <- mean(rendahora[publico == 1])
+media_priv <- mean(rendahora[publico == 0])
+
+medias_pub <- append(medias_pub, media_pub)
+medias_priv <- append(medias_priv, media_priv)
+
 }
 
 coeficientes_explicado <- coeficientes_explicado[-1]
@@ -785,12 +823,14 @@ erros_padrao_inexplicado <- erros_padrao_inexplicado[-1]
 tcs <- tcs[-1]
 pvalues_explicado <- pvalues_explicado[-1]
 pvalues_inexplicado <- pvalues_inexplicado[-1]
+medias_pub <- medias_pub[-1]
+medias_priv <- medias_priv[-1]
 
-matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs)
+matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs, medias_pub, medias_priv)
 
 matriz <- data.frame(matriz)
 
-nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc")
+nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média - público", "Média - privado")
 
 names(matriz) <- nomes
 
