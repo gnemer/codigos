@@ -5,6 +5,8 @@
 
 ####### TEMPO: Cerca de 55 minutos
 
+####### FECHA TODAS AS ÁREAS DE TRABALHO ABERTAS E CARREGA OS PACOTES
+
 rm(list = ls())
 
 library(bit64)
