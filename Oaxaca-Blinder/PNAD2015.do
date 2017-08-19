@@ -3,7 +3,7 @@
 
 ####### OBJETIVO: Importar dados da PNAD 2015, declarar variáveis importantes, eliminar NA's e realizar uma decomposição de Oaxaca-Blinder em duas partes (two-fold), para cada estado e esfera governamental, e para o setor público total de cada estado ##########
 
-####### TEMPO: Cerca de 55 minutos
+####### TEMPO: Cerca de 140 minutos
 
 ####### FECHA TODAS AS ÁREAS DE TRABALHO ABERTAS E CARREGA OS PACOTES
 
@@ -70,7 +70,7 @@ pes$V4706 <- as.numeric(pes$V4706)
 pes$V4805 <- as.numeric(pes$V4805)
 pes$V4729 <- as.numeric(pes$V4729)
 
-## muda NA de esfera
+## muda NAs importantes
 
 pes$V9033[is.na(pes$V9033)] <- 0
 pes$V0502[is.na(pes$V0502)] <- 0
@@ -91,9 +91,392 @@ return(valorp)
 
 estados <- c("RO", "AC", "AM", "RR", "PA", "AP", "TO", "MA", "PI", "CE", "RN", "PB", "PE", "AL", "SE", "BA", "MG", "ES", "RJ", "SP", "PR", "SC", "RS", "MS", "MT", "GO", "DF")
 
+totais <- c("Federal", "Estadual", "Municipal", "Setor Público")
+
 esferas <- c(1, 3, 5, 10)
 
 ufs <- c(11, 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 32, 33, 35, 41, 42, 43, 50, 51, 52, 53)
+
+####### PRIMEIRA PARTE: BRASIL 
+
+### vetores
+coeficientes_explicado <- c(1)
+erros_padrao_explicado <- c(1)
+coeficientes_inexplicado <- c(1)
+erros_padrao_inexplicado <- c(1)
+tcs <- c(1)
+pvalues_explicado <- c(1)
+pvalues_inexplicado <- c(1)
+medias_pub <- c(1)
+medias_priv <- c(1)
+
+for(i in 1:4){
+
+if(esferas[i] <= 5){
+
+#variaveis de peso e controle
+
+estado <- pes$UF
+peso <- pes$V4729
+controle <- paste(pes$UF, pes$V0102, pes$V0103, pes$V0403, pes$V0301, sep = "")
+controle <- as.numeric(controle)
+controlefam <- paste(pes$UF, pes$V0102, pes$V0103, pes$V0403, sep = "")
+controlefam <- as.numeric(controlefam)
+controledom <- paste(pes$UF, pes$V0102, pes$V0103, sep = "")
+controledom <- as.numeric(controledom)
+
+filtro <- (pes$V9033 == 0 | pes$V9033 == esferas[i]) & pes$V4810 != 9 & pes$V4810 != 10 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
+
+## pesV9032 E 9033 indicam setor e esfera
+
+sindicato <- pes$V9087[filtro]
+estado <- estado[filtro]
+sexo <- pes$V0302[filtro]
+idade <- pes$V8005[filtro]
+cor <- pes$V0404[filtro]
+renda <- pes$V4718[filtro]
+horas <- pes$V9058[filtro]
+educacao <- pes$V4803[filtro]
+ocupacao <- pes$V4706[filtro]
+peso <- pes$V4729[filtro]
+controle <- controle[filtro]
+setor <- pes$V9032[filtro]
+esfera <- pes$V9033[filtro]
+tenure1 <- pes$V9611[filtro]
+tenure2 <- pes$V9612[filtro]
+atividade <- pes$V4810[filtro]
+
+peso <- as.numeric(peso)
+estado <- as.numeric(estado)
+sexo <- as.numeric(sexo)
+idade <- as.numeric(idade)
+cor <- as.numeric(cor)
+renda <- as.numeric(renda)
+horas <- as.numeric(horas)
+ocupacao <- as.numeric(ocupacao)
+educacao <- as.numeric(educacao)
+esfera <- as.numeric(esfera)
+setor <- as.numeric(setor)
+controle <- as.numeric(controle)
+tenure1 <- as.numeric(tenure1)
+tenure2 <- as.numeric(tenure2)
+atividade <- as.numeric(atividade)
+
+
+horas <- horas/7
+horas <- 30*horas
+
+tenure1 <- 12*tenure1
+tenure <- (tenure1 + tenure2)/12
+
+
+
+
+rendahora <- renda/horas
+
+#sexo com referencia mulher
+
+homem <- as.numeric(sexo == 2)
+
+# etnia com referencia não-branco
+
+branco <- as.numeric(cor == 2)
+
+
+idadequadrado <- idade^2
+
+#estados com referencia rondonia
+
+acre <- as.numeric(estado == 12)
+amazonas <- as.numeric(estado == 13)
+roraima <- as.numeric(estado == 14)
+para <- as.numeric(estado == 15)
+amapa <- as.numeric(estado == 16)
+tocantins <- as.numeric(estado == 17)
+maranhao <- as.numeric(estado == 21)
+piaui <- as.numeric(estado == 22)
+ceara <- as.numeric(estado == 23)
+rionorte <- as.numeric(estado == 24)
+paraiba <- as.numeric(estado == 25)
+pernambuco <- as.numeric(estado == 26)
+alagoas <- as.numeric(estado == 27)
+sergipe <- as.numeric(estado == 28)
+bahia <- as.numeric(estado == 29)
+minas <- as.numeric(estado == 31)
+espirito <- as.numeric(estado == 32)
+rio <- as.numeric(estado == 33)
+saopaulo <- as.numeric(estado == 35)
+parana <- as.numeric(estado == 41)
+santa <- as.numeric(estado == 42)
+riosul <- as.numeric(estado == 43)
+matosul <- as.numeric(estado == 50)
+mato <- as.numeric(estado == 51)
+goias <- as.numeric(estado == 52)
+df <- as.numeric(estado == 53)
+
+
+
+## setor
+
+
+publico <- as.numeric(esfera > 0)
+privado <- as.numeric(esfera == 0)
+
+
+## carreira com referencia 'demais'
+
+qualificados <- as.numeric(atividade == 1 | atividade == 2)
+tecnicos <- as.numeric(atividade == 3 | atividade == 4)
+demais <- as.numeric(atividade == 5 | atividade == 6 | atividade == 8 | atividade == 9 | atividade == 10)
+
+
+### extras
+
+rendahora <- log(rendahora)
+
+educacao <- educacao - 1
+
+educacaoquadrado <- educacao^2
+
+sindicato <- as.numeric(sindicato == 1)
+
+dados <- data.frame(rendahora, acre, amazonas, roraima, para, amapa, tocantins, maranhao, piaui, ceara, rionorte, paraiba, pernambuco, alagoas, sergipe, bahia, minas, espirito, rio, saopaulo, parana, santa, riosul, matosul, mato, goias, df, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, qualificados, tecnicos, demais, publico, privado)
+
+minha_formula <- rendahora ~ acre + amazonas + roraima + para + amapa + tocantins + maranhao + piaui + ceara + rionorte + paraiba + pernambuco + alagoas + sergipe + bahia + minas + espirito + rio + saopaulo + parana + santa + riosul + matosul + mato + goias + df + homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + qualificados + tecnicos | privado
+
+set.seed(7)
+
+oaxaca <- oaxaca(formula = minha_formula, data = dados, R = 1000)
+
+dfs <- sum(publico) + sum(privado) - 74
+
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
+
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
+
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
+
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
+
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
+
+tc <- qt(0.975, df = dfs)
+
+tcs <- append(tcs, tc)
+
+media_pub <- mean(rendahora[publico == 1])
+media_priv <- mean(rendahora[publico == 0])
+
+medias_pub <- append(medias_pub, media_pub)
+medias_priv <- append(medias_priv, media_priv)
+
+} else if (esferas[i] == 10) {
+
+#variaveis de peso e controle
+
+estado <- pes$UF
+peso <- pes$V4729
+controle <- paste(pes$UF, pes$V0102, pes$V0103, pes$V0403, pes$V0301, sep = "")
+controle <- as.numeric(controle)
+controlefam <- paste(pes$UF, pes$V0102, pes$V0103, pes$V0403, sep = "")
+controlefam <- as.numeric(controlefam)
+controledom <- paste(pes$UF, pes$V0102, pes$V0103, sep = "")
+controledom <- as.numeric(controledom)
+
+filtro <- pes$V4810 != 9 & pes$V4810 != 10 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
+
+## pesV9032 E 9033 indicam setor e esfera
+
+sindicato <- pes$V9087[filtro]
+estado <- estado[filtro]
+sexo <- pes$V0302[filtro]
+idade <- pes$V8005[filtro]
+cor <- pes$V0404[filtro]
+renda <- pes$V4718[filtro]
+horas <- pes$V9058[filtro]
+educacao <- pes$V4803[filtro]
+ocupacao <- pes$V4706[filtro]
+peso <- pes$V4729[filtro]
+controle <- controle[filtro]
+setor <- pes$V9032[filtro]
+esfera <- pes$V9033[filtro]
+tenure1 <- pes$V9611[filtro]
+tenure2 <- pes$V9612[filtro]
+atividade <- pes$V4810[filtro]
+
+peso <- as.numeric(peso)
+estado <- as.numeric(estado)
+sexo <- as.numeric(sexo)
+idade <- as.numeric(idade)
+cor <- as.numeric(cor)
+renda <- as.numeric(renda)
+horas <- as.numeric(horas)
+ocupacao <- as.numeric(ocupacao)
+educacao <- as.numeric(educacao)
+esfera <- as.numeric(esfera)
+setor <- as.numeric(setor)
+controle <- as.numeric(controle)
+tenure1 <- as.numeric(tenure1)
+tenure2 <- as.numeric(tenure2)
+atividade <- as.numeric(atividade)
+
+
+horas <- horas/7
+horas <- 30*horas
+
+tenure1 <- 12*tenure1
+tenure <- (tenure1 + tenure2)/12
+
+
+
+
+rendahora <- renda/horas
+
+#sexo com referencia mulher
+
+homem <- as.numeric(sexo == 2)
+
+# etnia com referencia não-branco
+
+branco <- as.numeric(cor == 2)
+
+
+idadequadrado <- idade^2
+
+#estados com referencia rondonia
+
+acre <- as.numeric(estado == 12)
+amazonas <- as.numeric(estado == 13)
+roraima <- as.numeric(estado == 14)
+para <- as.numeric(estado == 15)
+amapa <- as.numeric(estado == 16)
+tocantins <- as.numeric(estado == 17)
+maranhao <- as.numeric(estado == 21)
+piaui <- as.numeric(estado == 22)
+ceara <- as.numeric(estado == 23)
+rionorte <- as.numeric(estado == 24)
+paraiba <- as.numeric(estado == 25)
+pernambuco <- as.numeric(estado == 26)
+alagoas <- as.numeric(estado == 27)
+sergipe <- as.numeric(estado == 28)
+bahia <- as.numeric(estado == 29)
+minas <- as.numeric(estado == 31)
+espirito <- as.numeric(estado == 32)
+rio <- as.numeric(estado == 33)
+saopaulo <- as.numeric(estado == 35)
+parana <- as.numeric(estado == 41)
+santa <- as.numeric(estado == 42)
+riosul <- as.numeric(estado == 43)
+matosul <- as.numeric(estado == 50)
+mato <- as.numeric(estado == 51)
+goias <- as.numeric(estado == 52)
+df <- as.numeric(estado == 53)
+
+
+
+## setor
+
+
+publico <- as.numeric(esfera > 0)
+privado <- as.numeric(esfera == 0)
+
+
+## carreira com referencia 'demais'
+
+qualificados <- as.numeric(atividade == 1 | atividade == 2)
+tecnicos <- as.numeric(atividade == 3 | atividade == 4)
+demais <- as.numeric(atividade == 5 | atividade == 6 | atividade == 8 | atividade == 9 | atividade == 10)
+
+
+### extras
+
+rendahora <- log(rendahora)
+
+educacao <- educacao - 1
+
+educacaoquadrado <- educacao^2
+
+sindicato <- as.numeric(sindicato == 1)
+
+dados <- data.frame(rendahora, acre, amazonas, roraima, para, amapa, tocantins, maranhao, piaui, ceara, rionorte, paraiba, pernambuco, alagoas, sergipe, bahia, minas, espirito, rio, saopaulo, parana, santa, riosul, matosul, mato, goias, df, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, qualificados, tecnicos, demais, publico, privado)
+
+minha_formula <- rendahora ~ acre + amazonas + roraima + para + amapa + tocantins + maranhao + piaui + ceara + rionorte + paraiba + pernambuco + alagoas + sergipe + bahia + minas + espirito + rio + saopaulo + parana + santa + riosul + matosul + mato + goias + df + homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + qualificados + tecnicos | privado
+
+set.seed(7)
+
+oaxaca <- oaxaca(formula = minha_formula, data = dados, R = 1000)
+
+dfs <- sum(publico) + sum(privado) - 74
+
+coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
+std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
+coef_inexplicado <- (oaxaca$twofold$overall)[[1,4]]
+std_error_inexplicado <- (oaxaca$twofold$overall)[[1,5]]
+
+coeficientes_explicado <- append(coeficientes_explicado, coef_explicado)
+erros_padrao_explicado <- append(erros_padrao_explicado, std_error_explicado)
+coeficientes_inexplicado <- append(coeficientes_inexplicado, coef_inexplicado)
+erros_padrao_inexplicado <- append(erros_padrao_inexplicado, std_error_inexplicado)
+
+t_explicado <- coef_explicado/std_error_explicado
+t_inexplicado <- coef_inexplicado/std_error_inexplicado
+
+p_value_explicado <- pvalor(t_explicado)
+p_value_inexplicado <- pvalor(t_inexplicado)
+
+pvalues_explicado <- append(pvalues_explicado, p_value_explicado)
+pvalues_inexplicado <- append(pvalues_inexplicado, p_value_inexplicado)
+
+tc <- qt(0.975, df = dfs)
+
+tcs <- append(tcs, tc)
+
+media_pub <- mean(rendahora[publico == 1])
+media_priv <- mean(rendahora[publico == 0])
+
+medias_pub <- append(medias_pub, media_pub)
+medias_priv <- append(medias_priv, media_priv)
+
+} else
+print("fim")
+}
+
+coeficientes_explicado <- coeficientes_explicado[-1]
+erros_padrao_explicado <- erros_padrao_explicado[-1]
+coeficientes_inexplicado <- coeficientes_inexplicado[-1]
+erros_padrao_inexplicado <- erros_padrao_inexplicado[-1]
+tcs <- tcs[-1]
+pvalues_explicado <- pvalues_explicado[-1]
+pvalues_inexplicado <- pvalues_inexplicado[-1]
+medias_pub <- medias_pub[-1]
+medias_priv <- medias_priv[-1]
+
+
+
+
+matriz <- cbind(totais, coeficientes_explicado, erros_padrao_explicado, coeficientes_inexplicado, erros_padrao_inexplicado, pvalues_explicado, pvalues_inexplicado, tcs, medias_pub, medias_priv)
+
+matriz <- data.frame(matriz)
+
+nomes <- c("Totais", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média (público)", "Média (privado)")
+
+names(matriz) <- nomes
+
+total <- paste(pasta_resultados,"total.xlsx", sep = "")
+
+write.xlsx(matriz, file = total)
+
+
+##### SEGUNDA PARTE: POR ESTADO
 
 for(i in 1:4){
 
@@ -113,7 +496,7 @@ medias_priv <- c(1)
 for(j in 1:27){
 
 
-#variaveis de peso
+#variaveis de peso e controle
 
 estado <- pes$UF
 peso <- pes$V4729
@@ -125,7 +508,7 @@ controledom <- paste(pes$UF, pes$V0102, pes$V0103, sep = "")
 controledom <- as.numeric(controledom)
 
 
-filtro <- estado == ufs[j] & (pes$V9033 == 0 | pes$V9033 == esferas[i]) & pes$V4810 != 9 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
+filtro <- estado == ufs[j] & (pes$V9033 == 0 | pes$V9033 == esferas[i]) & pes$V4810 != 9 & pes$V4810 != 10 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
 
 ## pesV9032 E 9033 indicam setor e esfera
 
@@ -144,8 +527,6 @@ setor <- pes$V9032[filtro]
 esfera <- pes$V9033[filtro]
 tenure1 <- pes$V9611[filtro]
 tenure2 <- pes$V9612[filtro]
-migrante <- pes$V0502[filtro]
-civil <- pes$V4011[filtro]
 atividade <- pes$V4810[filtro]
 
 peso <- as.numeric(peso)
@@ -162,8 +543,6 @@ setor <- as.numeric(setor)
 controle <- as.numeric(controle)
 tenure1 <- as.numeric(tenure1)
 tenure2 <- as.numeric(tenure2)
-migrante <- as.numeric(migrante)
-civil <- as.numeric(civil)
 atividade <- as.numeric(atividade)
 
 
@@ -214,21 +593,18 @@ educacao <- educacao - 1
 
 educacaoquadrado <- educacao^2
 
-migrante <- as.numeric(migrante == 4)
-
-casado <- as.numeric(civil == 1 | civil == 99)
 
 sindicato <- as.numeric(sindicato == 1)
 
-dados <- data.frame(rendahora, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, migrante, casado, qualificados, tecnicos, demais, publico, privado)
+dados <- data.frame(rendahora, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, qualificados, tecnicos, demais, publico, privado)
 
-minha_formula_estado <- rendahora ~ homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + migrante + casado + qualificados + tecnicos | privado
+minha_formula_estado <- rendahora ~ homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + qualificados + tecnicos | privado
 
 set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 26
+dfs <- sum(publico) + sum(privado) - 22
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -275,7 +651,7 @@ matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coefici
 
 matriz <- data.frame(matriz)
 
-nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média - público", "Média - privado")
+nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média (público)", "Média (privado)")
 
 names(matriz) <- nomes
 
@@ -298,7 +674,7 @@ medias_priv <- c(1)
 
 for(j in 1:27){
 
-#variaveis de peso
+#variaveis de peso e controle
 
 estado <- pes$UF
 peso <- pes$V4729
@@ -310,7 +686,7 @@ controledom <- paste(pes$UF, pes$V0102, pes$V0103, sep = "")
 controledom <- as.numeric(controledom)
 
 
-filtro <- estado == ufs[j] & (pes$V9033 == 0 | pes$V9033 == esferas[i]) & pes$V4810 != 9 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
+filtro <- estado == ufs[j] & (pes$V9033 == 0 | pes$V9033 == esferas[i]) & pes$V4810 != 9 & pes$V4810 != 10 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
 
 ## pesV9032 E 9033 indicam setor e esfera
 
@@ -329,8 +705,6 @@ setor <- pes$V9032[filtro]
 esfera <- pes$V9033[filtro]
 tenure1 <- pes$V9611[filtro]
 tenure2 <- pes$V9612[filtro]
-migrante <- pes$V0502[filtro]
-civil <- pes$V4011[filtro]
 atividade <- pes$V4810[filtro]
 
 peso <- as.numeric(peso)
@@ -347,8 +721,6 @@ setor <- as.numeric(setor)
 controle <- as.numeric(controle)
 tenure1 <- as.numeric(tenure1)
 tenure2 <- as.numeric(tenure2)
-migrante <- as.numeric(migrante)
-civil <- as.numeric(civil)
 atividade <- as.numeric(atividade)
 
 
@@ -399,21 +771,17 @@ educacao <- educacao - 1
 
 educacaoquadrado <- educacao^2
 
-migrante <- as.numeric(migrante == 4)
-
-casado <- as.numeric(civil == 1 | civil == 99)
-
 sindicato <- as.numeric(sindicato == 1)
 
-dados <- data.frame(rendahora, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, migrante, casado, qualificados, tecnicos, demais, publico, privado)
+dados <- data.frame(rendahora, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, qualificados, tecnicos, demais, publico, privado)
 
-minha_formula_estado <- rendahora ~ homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + migrante + casado + qualificados + tecnicos | privado
+minha_formula_estado <- rendahora ~ homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + qualificados + tecnicos | privado
 
 set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 26
+dfs <- sum(publico) + sum(privado) - 22
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -460,7 +828,7 @@ matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coefici
 
 matriz <- data.frame(matriz)
 
-nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média - público", "Média - privado")
+nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média (público)", "Média (privado)")
 
 names(matriz) <- nomes
 
@@ -483,7 +851,7 @@ medias_priv <- c(1)
 
 for(j in 1:27){
 
-#variaveis de peso
+#variaveis de peso e controle
 
 estado <- pes$UF
 peso <- pes$V4729
@@ -495,7 +863,7 @@ controledom <- paste(pes$UF, pes$V0102, pes$V0103, sep = "")
 controledom <- as.numeric(controledom)
 
 
-filtro <- estado == ufs[j] & (pes$V9033 == 0 | pes$V9033 == esferas[i]) & pes$V4810 != 9 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
+filtro <- estado == ufs[j] & (pes$V9033 == 0 | pes$V9033 == esferas[i]) & pes$V4810 != 9 & pes$V4810 != 10 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
 
 ## pesV9032 E 9033 indicam setor e esfera
 
@@ -514,8 +882,6 @@ setor <- pes$V9032[filtro]
 esfera <- pes$V9033[filtro]
 tenure1 <- pes$V9611[filtro]
 tenure2 <- pes$V9612[filtro]
-migrante <- pes$V0502[filtro]
-civil <- pes$V4011[filtro]
 atividade <- pes$V4810[filtro]
 
 peso <- as.numeric(peso)
@@ -532,8 +898,6 @@ setor <- as.numeric(setor)
 controle <- as.numeric(controle)
 tenure1 <- as.numeric(tenure1)
 tenure2 <- as.numeric(tenure2)
-migrante <- as.numeric(migrante)
-civil <- as.numeric(civil)
 atividade <- as.numeric(atividade)
 
 
@@ -584,21 +948,18 @@ educacao <- educacao - 1
 
 educacaoquadrado <- educacao^2
 
-migrante <- as.numeric(migrante == 4)
-
-casado <- as.numeric(civil == 1 | civil == 99)
 
 sindicato <- as.numeric(sindicato == 1)
 
-dados <- data.frame(rendahora, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, migrante, casado, qualificados, tecnicos, demais, publico, privado)
+dados <- data.frame(rendahora, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, qualificados, tecnicos, demais, publico, privado)
 
-minha_formula_estado <- rendahora ~ homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + migrante + casado + qualificados + tecnicos | privado
+minha_formula_estado <- rendahora ~ homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + qualificados + tecnicos | privado
 
 set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 26
+dfs <- sum(publico) + sum(privado) - 22
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -645,7 +1006,7 @@ matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coefici
 
 matriz <- data.frame(matriz)
 
-nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média - público", "Média - privado")
+nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média (público)", "Média (privado)")
 
 names(matriz) <- nomes
 
@@ -653,7 +1014,7 @@ municipal <- paste(pasta_resultados,"municipal.xlsx", sep = "")
 
 write.xlsx(matriz, file = municipal)
 
-} else 
+} else if (esferas[i] == 10) {
 
 ### vetores
 coeficientes_explicado <- c(1)
@@ -668,7 +1029,7 @@ medias_priv <- c(1)
 
 for(j in 1:27){
 
-#variaveis de peso
+#variaveis de peso e controle
 
 estado <- pes$UF
 peso <- pes$V4729
@@ -680,7 +1041,7 @@ controledom <- paste(pes$UF, pes$V0102, pes$V0103, sep = "")
 controledom <- as.numeric(controledom)
 
 
-filtro <- estado == ufs[j] & pes$V4810 != 9 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
+filtro <- estado == ufs[j] & pes$V4810 != 9 & pes$V4810 != 10 & !is.na(pes$V4706) & !is.na(pes$V9611) & !is.na(pes$V9612) & pes$V0404 != 9 & pes$V4805 == 1 & !is.na(pes$V4805) & pes$V4718 != 0 & pes$V4718 != 999999999999 & !is.na(pes$V4718) & !is.na(pes$V9058) & pes$V4803 != 17 & !is.na(pes$V4803) & (pes$V4706 == 1 | pes$V4706 == 3 | pes$V4706 == 4) & !is.na(pes$V4729) & !is.na(pes$V9087) & pes$V4810 != 7 & !is.na(pes$V4810) 
 
 ## pesV9032 E 9033 indicam setor e esfera
 
@@ -699,8 +1060,6 @@ setor <- pes$V9032[filtro]
 esfera <- pes$V9033[filtro]
 tenure1 <- pes$V9611[filtro]
 tenure2 <- pes$V9612[filtro]
-migrante <- pes$V0502[filtro]
-civil <- pes$V4011[filtro]
 atividade <- pes$V4810[filtro]
 
 peso <- as.numeric(peso)
@@ -717,8 +1076,6 @@ setor <- as.numeric(setor)
 controle <- as.numeric(controle)
 tenure1 <- as.numeric(tenure1)
 tenure2 <- as.numeric(tenure2)
-migrante <- as.numeric(migrante)
-civil <- as.numeric(civil)
 atividade <- as.numeric(atividade)
 
 
@@ -769,21 +1126,17 @@ educacao <- educacao - 1
 
 educacaoquadrado <- educacao^2
 
-migrante <- as.numeric(migrante == 4)
-
-casado <- as.numeric(civil == 1 | civil == 99)
-
 sindicato <- as.numeric(sindicato == 1)
 
-dados <- data.frame(rendahora, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, migrante, casado, qualificados, tecnicos, demais, publico, privado)
+dados <- data.frame(rendahora, sindicato, tenure, educacao, educacaoquadrado, homem, branco, idade, idadequadrado, qualificados, tecnicos, demais, publico, privado)
 
-minha_formula_estado <- rendahora ~ homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + migrante + casado + qualificados + tecnicos | privado
+minha_formula_estado <- rendahora ~ homem + branco + idade + idadequadrado + educacao + educacaoquadrado + tenure + sindicato + qualificados + tecnicos | privado
 
 set.seed(7)
 
 oaxaca <- oaxaca(formula = minha_formula_estado, data = dados, R = 1000)
 
-dfs <- sum(publico) + sum(privado) - 26
+dfs <- sum(publico) + sum(privado) - 22
 
 coef_explicado <- (oaxaca$twofold$overall)[[1,2]]
 std_error_explicado <- (oaxaca$twofold$overall)[[1,3]]
@@ -816,6 +1169,10 @@ medias_priv <- append(medias_priv, media_priv)
 
 }
 
+} else
+print("fim")
+}
+
 coeficientes_explicado <- coeficientes_explicado[-1]
 erros_padrao_explicado <- erros_padrao_explicado[-1]
 coeficientes_inexplicado <- coeficientes_inexplicado[-1]
@@ -830,11 +1187,11 @@ matriz <- cbind(estados, coeficientes_explicado, erros_padrao_explicado, coefici
 
 matriz <- data.frame(matriz)
 
-nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média - público", "Média - privado")
+nomes <- c("Estados", "Coef(explained)", "S.E. (explained)", "Coef(unexplained)", "S.E. (unexplained)", "P-value (explained)", "P-value (unexplained)", "Tc", "Média (público)", "Média (privado)")
 
 names(matriz) <- nomes
 
 setorpublico <- paste(pasta_resultados,"setorpublico.xlsx", sep = "")
 
 write.xlsx(matriz, file = setorpublico)
-}
+
